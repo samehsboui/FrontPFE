@@ -1,0 +1,68 @@
+<ul style="background-color: lightslategrey;">
+
+  <li ><a routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+
+
+
+<div style="margin-top: 0px;" class="panel panel-primary">
+  <div class="panel-heading">Needs Confirmations :</div>
+  <div class="panel-body" >
+
+    <div class="col-sm-2 ">
+      <div style="margin-top: 0px;" class="panel panel-primary">
+        <div class="panel-body"  style="hight: 500px;">
+          <div  class="vertical-menu">
+            <a routerLink="/users" class="active">Profile</a>
+            <a routerLink="/pans">Pans</a>
+            <a routerLink="#">Reservations</a>
+            <a routerLink="/reservation">Demandes</a>
+
+            <a routerLink="/message">Messages</a>
+            <a routerLink="/notification">Notifications</a>
+            <a routerLink="/contrat">Contracts</a>
+          </div>
+        </div></div>
+
+
+    </div> <div class="col-md-10">
+    <div style="float: right; margin-bottom: 20px; margin-right: 90px;">
+      <input type="text" placeholder="Name" [(ngModel)]="motCle" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" style="border: 2px solid #4CAF50;border-radius: 20px;" (click)="chercher()"> <span class="glyphicon glyphicon-search"></span>Search</button></div>
+    <!-- item listing  -->
+    <div class="item" *ngFor="let m of pagePans?.content">
+      <div class="row">
+        <div class="col-md-11">
+          <h4 class="no-margin-top">{{m.nom}}</h4>
+          <h5><span class="color-black">{{m.etat}}</span></h5>
+
+
+          <div>
+            <button style="float: right; margin-left: 10px;" class="btn btn-xs btn-theme btn-default" (click)="detailsPan(p.id)" >View Details</button>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- end item listing  -->
+    <div style="float: left" class="container">
+      <ul  style="background-color: transparent;" class="nav nav-pills">
+        <li  [ngClass]="{'active':i==currentpage}" *ngFor="let p of pages; let i=index">
+          <a style="color: blue;" class="clickable" (click)="gotoPage(i)">{{i}}</a>
+        </li>
+      </ul>
+    </div>
+
+
+
+  </div>
+  </div></div>
+
+

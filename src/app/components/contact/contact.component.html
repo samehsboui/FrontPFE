@@ -1,0 +1,54 @@
+
+
+<ul style="background-color: lightslategrey;">
+
+  <li ><a   routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+</ul>
+
+
+<div  class="panel panel-primary">
+  <div class="panel-heading">Contact</div>
+  <div style="height: 700px;" [ngStyle]="{background: 'url(assets/images/bg-01.jpg )'}" class="panel-body">
+    <div  class="container">
+
+
+
+      <div class="form-group">
+        <label class="control-label">Username</label>
+        <input type="text" class="form-control" [(ngModel)]="mess.transmitter"  placeholder="Your name.."/>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Subject</label>
+        <textarea  name="subject" placeholder="Write something.." [(ngModel)]="mess.contenu" style="height:200px"></textarea>
+      </div>
+
+      <button style="float: right;"  routerLink="/users">Cancel</button>
+      <button style="float: right; margin-right: 10px;" class="btn-primary" (click)="saveMessage()">Send</button>
+
+
+</div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

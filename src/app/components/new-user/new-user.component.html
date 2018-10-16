@@ -1,0 +1,75 @@
+
+<ul style="background-color: lightslategrey;">
+
+
+  <li ><a  routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+</ul>
+
+
+<div  class="panel panel-primary" *ngIf="mode==1">
+  <div class="panel-heading">Add New User :</div>
+  <div style="height: 700px;" [ngStyle]="{background: 'url(assets/images/bg-01.jpg )'}" class="panel-body">
+
+
+    <div class="container">
+
+
+
+
+      <div class="form-group" [class.has-error]="password.invalid && password.touched">
+        <label for="nom" class="control-label">Last Name</label>
+        <input name="nom" id="nom" type="text" #nom="ngModel" required class="form-control" [(ngModel)]="appuser.nom"/>
+        <span class="help-block" *ngIf="nom.errors?.required && nom.touched">Last name is required</span>
+
+      </div>
+
+      <div class="form-group" >
+        <label class="control-label">First Name :</label>
+        <input type="text" required class="form-control" [(ngModel)]="appuser.prenom"/>
+      </div>
+      <div class="form-group" [class.has-error]="password.invalid && password.touched">
+        <label for="username" class="control-label">Username :</label>
+        <input name="username" id="username" type="text" #username="ngModel" required class="form-control" [(ngModel)]="appuser.username"/>
+        <span class="help-block" *ngIf="username.errors?.required && username.touched">Username is required</span>
+
+      </div>
+
+
+      <div class="form-group" [class.has-error]="password.invalid && password.touched">
+        <label for="password" class="control-label">Password :</label>
+        <input id="password" name="password" type="text" #password="ngModel"  class="form-control" pattern=".{6,}" title="six or more characters" [(ngModel)]="appuser.password"/>
+        <span class="help-block" *ngIf="password.errors?.required && password.touched">Password is required</span>
+        <span class="help-block" *ngIf="password.errors?.pattern && password.touched">Password must contain at least 6 characters</span>
+
+      </div>
+
+      <div class="form-group" [class.has-error]="email.invalid && email.touched">
+        <label for="email" class="control-label">Email :</label>
+        <input  id="email" name="email" type="text" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required  #email="ngModel" class="form-control" [(ngModel)]="appuser.email"/>
+      <span class="help-block" *ngIf="email.errors?.required && email.touched">Email is required</span>
+        <span class="help-block" *ngIf="email.errors?.pattern && email.touched">Email is invalid</span>
+      </div>
+
+      <div class="form-group" [class.has-error]="num_tel.invalid && num_tel.touched">
+        <label for="num_tel" class="control-label">Phone Number :</label>
+        <input name="num_tel" id="num_tel" type="tel" #num_tel="ngModel" required class="form-control" [(ngModel)]="appuser.num_tel"/>
+        <span class="help-block" *ngIf="num_tel.errors?.required && num_tel.touched">Phone number is required</span>
+
+      </div>
+
+      <button style="float: right;"  routerLink="/users">Cancel</button>
+      <button style="float: right; margin-right: 10px;" class="btn-primary" (click)="saveUser()">Save</button>
+
+     </div>
+    <div class="col-sm-6"></div>
+  </div>
+</div>
+
+

@@ -1,0 +1,202 @@
+<ul style="background-color: lightslategrey;">
+
+  <li ><a routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+
+
+
+<div >
+  <div class="panel panel-primary" *ngIf="mode==1">
+    <div class="panel-heading">New Pan :</div>
+    <div class="panel-body">
+      <div >
+        <div class="col-sm-4">
+          <div class=" panel panel-primary" style="background-color: darkgray;" >
+            <div class="panel-heading">General Infos :</div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <label class="control-label">Pan's Name</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.nom"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Type Pan :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.typePan"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Categorie :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.categorie"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">double_Face :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.double_face"/>
+              </div>
+
+
+              <div class="form-group">
+                <label class="control-label">Dimensions :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.dimensions"/>
+              </div>
+            </div>
+          </div></div>
+
+        <div class="col-sm-8">
+          <div class=" panel panel-primary" style="background-color: darkgray;" >
+            <div class="panel-heading">Location :</div>
+            <div class="panel-body">
+
+
+              <div class="form-group">
+                <label class="control-label">Pays :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.pays"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Localité :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.localite"/>
+              </div>
+
+
+              <div class="form-group">
+                <label class="control-label">Region :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.region"/>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="control-label">Code Postale :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.code_postale"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Modele :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.modele"/>
+
+                <div class="form-group">
+                  <input style="float: right;" type="file"
+                         id="file"
+                         (change)="handleFileInput($event.target.files)">
+                </div>
+              </div>
+
+            </div></div></div>
+
+
+        <div class="col-sm-4">
+          <div class=" panel panel-primary" style="background-color: darkgray;" >
+            <div class="panel-heading">Position :</div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <label class="control-label">Adresse :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.adresse"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Latitude</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.latitude"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Longitude :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.longitude"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Etat :</label>
+                <input type="text" class="form-control" [(ngModel)]="pan.etat"/>
+              </div>
+
+            </div></div>
+        </div>
+
+        <div class="col-sm-8">
+          <div class=" panel panel-primary"  >
+            <div class="panel-heading">Map :</div>
+            <div class="panel-body">
+
+              <agm-map  [latitude]="36.718241" [longitude]="3.091969" [zoom]="6">
+              </agm-map>
+
+            </div></div>
+        </div>
+
+
+
+
+
+          <button style="float: right;"  routerLink="/pans">Cancel</button>
+          <button style="float: right; margin-right: 10px;" class="btn-primary" (click)="savePan()">Save</button>
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary" *ngIf="mode==2">
+    <div class="panel-heading">Validation :</div>
+    <div class="panel-body">
+      <div >
+        <div class="form-group">
+          <label class="control-label">Name :</label>
+          <label>{{pan.nom}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Adresse :</label>
+          <label>{{pan.adresse}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">region :</label>
+          <label>{{pan.region}}</label>
+
+        </div>
+        <div class="form-group">
+          <label class="control-label">Localite:</label>
+          <label>{{pan.localite}}</label>
+
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Pays :</label>
+          <label>{{pan.pays}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Dimensions :</label>
+          <label>{{pan.dimensions}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Modele  :</label>
+          <label>{{pan.modele}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Categorie :</label>
+          <label>{{pan.categorie}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Type :</label>
+          <label>{{pan.typePan}}</label>
+        </div>
+        <button style="float: right; margin-left: 10px;" class="btn-primary" routerLink="/pans">Pans</button>
+
+        <button style="float: right;" class="btn-primary" (click)="mode=1">New Pan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

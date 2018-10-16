@@ -1,0 +1,32 @@
+<ul style="background-color: lightslategrey;">
+
+  <li ><a routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+<div class="container">
+    <p></p>
+  <button routerLink="/users">Users</button>
+    <button class="btn btn-success" (click)="newTask()" *ngIf="authService.isAllowed()">Ajouter Tache</button>
+    <p></p>
+ <div class="col-md-6 col-md-offset-3">
+  <table class="table table-striped" style="background-color: #fff;">
+    <tr>
+      <th >ID</th><th>Nom Tache</th>
+    </tr>
+    <tr *ngFor = "let t of taches">
+      <td>{{t.id}}</td>
+      <td>{{t.nomTache}}</td>
+    </tr>
+  </table>
+</div>
+</div>
+
+
+

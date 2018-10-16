@@ -1,0 +1,90 @@
+
+<ul style="background-color: lightslategrey;">
+
+  <li ><a routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+   <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+
+
+
+<div style="margin-top: 0px;" class="panel panel-primary">
+  <div class="panel-heading">User's List</div>
+  <div class="panel-body" >
+
+    <div class="col-sm-2 ">
+      <div style="margin-top: 0px;" class="panel panel-primary">
+        <div class="panel-body"  style="hight: 500px;">
+    <div  class="vertical-menu">
+      <a routerLink="/users" class="active">Profile</a>
+      <a routerLink="/pans">Pans</a>
+      <a routerLink="/reservation">Reservations</a>
+      <a routerLink="/reservation">Demandes</a>
+
+      <a routerLink="/message">Messages</a>
+      <a routerLink="/notification">Notifications</a>
+
+      <a routerLink="/contrat">Contracts</a>
+    </div>
+        </div></div>
+  </div>
+
+    <div class="col-md-10">
+
+
+    <div  class="form-group">
+      <input type="text" placeholder="Name" [(ngModel)]="motCle" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" style="border: 2px solid #4CAF50;border-radius: 20px;" (click)="chercher()"> <span class="glyphicon glyphicon-search"></span>Search</button>
+      <!-- (click)="openLg(content)" -->
+      <button  type="button" class="btn btn-primary " routerLink="/new-user" data-dismiss="content" style="float: right;" >Add</button>
+
+    </div>
+
+
+   <table class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>N° telephone</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <tr *ngFor="let u of pageUsers?.content">
+        <td>{{u.id}}</td>
+        <td>{{u.nom}}</td>
+        <td>{{u.prenom}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.num_tel}}</td>
+
+        <td>
+           <button style="color: #4CAF50;" class="glyphicon glyphicon-pencil" (click)="onEditUser(u.id)" ></button>
+        </td>
+        <td>
+           <button style="color: red;" class="glyphicon glyphicon-trash" (click)="deleteuser(u)" ></button>
+        </td>
+      </tr>
+    </table>
+    <div style="float: left" class="container">
+      <ul  style="background-color: transparent;" class="nav nav-pills">
+        <li  [ngClass]="{'active':i==currentpage}" *ngFor="let p of pages; let i=index">
+          <a style="color: blue;" class="clickable" (click)="gotoPage(i)">{{i}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ------------------------ -->
+
+

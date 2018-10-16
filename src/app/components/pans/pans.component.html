@@ -1,0 +1,102 @@
+<ul style="background-color: lightslategrey;">
+
+  <li ><a routerLink="/users">Profile</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+<div style="margin-top: 0px;" class="panel panel-primary">
+  <div class="panel-heading">Pans :
+    <button  style="float: right; width: 50px ; height: 28px;" routerLink="/new-pan"><span class="glyphicon glyphicon-plus"></span></button> </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-2"  >
+        <mat-card>
+          <mat-card-content>
+            <div class="form-group">
+              <input type="text" style="width: 110px;" placeholder="Search" [(ngModel)]="motCle" aria-label="Search">
+              <button  (click)="chercher()"> <span class="glyphicon glyphicon-search"></span></button>
+            </div>
+            <mat-list>
+              <mat-list-item style="color: black;" *ngFor="let p of pagePans?.content">
+                <h3 mat-line >{{p.id}}- {{p.nom}}</h3>
+                <p class="text-right"><a href="#modal-advanced" data-toggle="modal" class="link-white">
+                  <span class="clickable" style="color: #cccccc;" class="glyphicon glyphicon-eye-open clickable"></span></a></p>
+                <div class="modal fade" id="modal-advanced" >
+                  <div class="modal-dialog ">
+                    <div class="modal-content">
+                      <form>
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">About Pan</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Pan Details :</h5>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <p >
+                                  Name :  <span>{{p.nom}}</span><br/>
+                                  Adresse :  <span>{{p.adresse}}</span><br/>
+                                  Localite :  <span>{{p.localite}}</span><br/>
+                                  categorie :  <span>{{p.categorie}}</span><br/>
+
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default btn-theme" data-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </mat-list-item>
+              <div style="float: left" >
+                <ul  style="background-color: transparent;" class="nav nav-pills">
+                  <li [ngClass]="{'active':i==currentpage}" *ngFor="let p of pages; let i=index">
+                    <a style="color: #cccccc;" class="clickable" (click)="gotoPage(i)">{{i}}</a>
+                  </li>
+                </ul>
+              </div>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-10">
+        <agm-map [latitude]="36.718241" [longitude]="3.091969" [zoom]="6">
+          <agm-marker [latitude]="p.latitude" [longitude]="p.longitude" *ngFor="let p of pagePans?.content; let i=index">
+            <agm-snazzy-info-window [maxWidth]="800" [closeWhenOthersOpen]="true">
+              <ng-template>
+                <strong>{{p.nom}}</strong><br>
+                <h5>Status:{{p.etat}} </h5>
+
+
+                <button style="color: red;" class="glyphicon glyphicon-trash" *ngIf="authService.isAllowed()"(click)="deletePan(p)" ></button>
+                <button  class="glyphicon glyphicon-pencil" *ngIf="authService.isAllowed()"(click)="onEditPan(p.id)" ></button>
+                <button style="color: green;" (click)="detailPan(p.id)" class="glyphicon glyphicon-ok"></button>
+
+
+
+              </ng-template>
+            </agm-snazzy-info-window>
+          </agm-marker>
+        </agm-map></div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+

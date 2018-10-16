@@ -1,0 +1,42 @@
+<ul style="background-color: lightslategrey;">
+
+  <li ><a class="active" routerLink="/users">Users</a></li>
+  <li><a routerLink="/pans">Pans</a></li>
+  <li><a routerLink="/taches">Packs</a></li>
+  <li><a routerLink="/companions">Companions</a></li>
+  <li><a  routerLink="/contact" >Contact</a></li>
+  <li class="clickable" style="float: right;">
+    <a (click)="Logout()">Logout</a>
+  </li>
+
+</ul>
+
+  <div class="row col-md-6">
+    <div class="panel panel-default" >
+      <div class="panel-heading">Nouvelle Tache</div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSaveTask(f.value)">
+          <div class="form-group">
+            <label class="control-label">nom de Tache: </label>
+            <input class="form-control" type="text" name="nomTache" ngModel="" required/>
+          </div>
+          <button class="btn btn-primary" type="submit"  [disabled]="!f.valid">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-6">
+  <div class="panel panel-default" >
+    <div class="panel-heading">nouvelle tache ajoutée</div>
+    <div class="panel-body">
+      <div>
+        <label>ID: {{task.id}}</label>
+      </div>
+      <div>
+        <label>Nom Tache: {{task.nomTache}}</label>
+      </div>
+    </div>
+    <button routerLink="/taches" class="btn btn-danger" type="submit">Retour</button>
+  </div>
+</div>
+
